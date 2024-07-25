@@ -9,7 +9,7 @@ export class AccountsService {
 
   private readAccounts(): Account[] {
     const data = fs.readFileSync(this.filePath, 'utf8');
-    return JSON.parse[data] as Account[]
+    return JSON.parse(data) as Account[]
   }
 
   private writeAccounts(accounts: Account[]): void {
