@@ -27,4 +27,15 @@ export class AccountsService {
     this.writeAccounts(accounts);
     return newAccount;
   }
+
+  findById(id: number): Account {
+    const accounts = this.readAccounts();
+    const account = accounts.find(account => account.id === Number(id));
+
+    if(!account) {
+      console.log(`Account with id ${id} not found`)
+    }
+
+    return account;
+  }
 }
