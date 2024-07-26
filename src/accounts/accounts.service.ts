@@ -48,4 +48,12 @@ export class AccountsService {
 
     return account;
   }
+
+  removeAccount(id: number): void {
+    const accounts = this.readAccounts();
+    const accountIndex = accounts.findIndex(account => account.id === Number(id));
+
+    accounts.splice(accountIndex, 1);
+    this.writeAccounts(accounts);
+  }
 }
