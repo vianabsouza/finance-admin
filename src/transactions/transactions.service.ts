@@ -36,4 +36,8 @@ export class TransactionsService {
     this.writeTransactions(transactions);
     return newTransaction;
   }
+
+  findAll(): Transaction[] {
+    return this.readTransactions();
+  }
 }
