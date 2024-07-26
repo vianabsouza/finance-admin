@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { Transaction, TransactionType } from './transaction.model';
 import { TransactionsService } from './transactions.service';
 
@@ -14,5 +14,10 @@ export class TransactionsController {
   @Get()
   findAll(): Transaction[] {
     return this.transactionService.findAll();
+  }
+
+  @Put(':id')
+  updateTransaction(@Param('id', ParseIntPipe) id: number, @Body('amount') amount: number, @Body('type') type: TransactionType): Transaction {
+    return this.transactionService.updateTransaction(id, amount, type);
   }
 }

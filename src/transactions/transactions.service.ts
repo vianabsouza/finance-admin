@@ -40,4 +40,21 @@ export class TransactionsService {
   findAll(): Transaction[] {
     return this.readTransactions();
   }
+
+  updateTransaction(id: number, amount: number, type: TransactionType): Transaction {
+    const transactions = this.readTransactions();
+    const transaction = transactions.find(transaction => transaction.id === id);
+
+    if(!transaction) {
+      throw new NotFoundException('Transaction not found');
+    }
+
+    transaction.amount = amount;
+    transaction.type = type;
+
+    this.writeTransactions(transactions);
+
+    return transaction;
+
+  }
 }
