@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { AccountsService } from './accounts.service';
 import { Account } from './account.model';
 
@@ -15,5 +15,10 @@ export class AccountsController {
   @Get(':id')
   findById(@Param('id') id: number): Account {
     return this.accountsService.findById(id)
+  }
+
+  @Patch(':id/balance-update')
+  updateBalance(@Param('id') id: number, @Body('balance') newBalance: number): Account {
+    return this.accountsService.updateBalance(id, newBalance);
   }
 }

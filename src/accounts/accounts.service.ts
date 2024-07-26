@@ -38,4 +38,14 @@ export class AccountsService {
 
     return account;
   }
+
+  updateBalance(id: number, newBalance: number): Account {
+    const accounts = this.readAccounts();
+    const account = accounts.find(account => account.id === Number(id));
+
+    account.balance = newBalance;
+    this.writeAccounts(accounts);
+
+    return account;
+  }
 }
